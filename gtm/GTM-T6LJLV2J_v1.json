@@ -1,0 +1,356 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2026-11-17 03:36:18",
+    "containerVersion": {
+        "path": "accounts/6405326843/containers/287081326/versions/2",
+        "accountId": "6405326843",
+        "containerId": "287081326",
+        "containerVersionId": "2",
+        "name": "v1 GA4 ecommerce",
+        "description": "GA4 ecommerce via GTM Kit dataLayer; QA passed Nov 16\n\nTags:\n* Added a new \"Google Tag - GA4\" (G-M0K4S1JW4C) triggered by \"Initialization - All Pages\".\n* Added a new \"GA4 - ecommerce events\" tag triggered by \"CE - GA4 ecommerce\".\n\nTriggers:\n* Added the \"CE - GA4 ecommerce\" custom event trigger matching ecommerce events.\n\nVariables:\n* Added Data Layer Variable \"DLV - shipping_tier\" for \"ecommerce.shipping_tier\".\n* Added Data Layer Variable \"DLV - payment_type\" for \"ecommerce.payment_type\".\n\nSettings:\n* Added settings for automatic event detection and user-provided data collection.",
+        "container": {
+            "path": "accounts/6405326843/containers/287081326",
+            "accountId": "6405326843",
+            "containerId": "287081326",
+            "name": "Cascade Store",
+            "publicId": "GTM-T6LJLV2J",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1794886471556",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6405326843/containers/287081326/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-T6LJLV2J"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "tagId": "3",
+                "name": "Google Tag - GA4",
+                "type": "dest_ga",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "destinationId",
+                        "value": "G-M0K4S1JW4C"
+                    }
+                ],
+                "fingerprint": "1794783747210",
+                "firingTriggerId": [
+                    "2147479573"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "tagId": "9",
+                "name": "GA4 - ecommerce events",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "sendEcommerceData",
+                        "value": "true"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "getEcommerceDataFrom",
+                        "value": "dataLayer"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "shipping_tier"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - shipping_tier}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "payment_type"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - payment_type}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "{{Event}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "G-M0K4S1JW4C"
+                    }
+                ],
+                "fingerprint": "1794784567102",
+                "firingTriggerId": [
+                    "8"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "triggerId": "8",
+                "name": "CE - GA4 ecommerce",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "^(view_item_list|select_item|view_item|add_to_cart|remove_from_cart|view_cart|begin_checkout|add_shipping_info|add_payment_info|purchase)$"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1794784193088"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "variableId": "6",
+                "name": "DLV - shipping_tier",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "ecommerce.shipping_tier"
+                    }
+                ],
+                "fingerprint": "1794783963444",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "variableId": "7",
+                "name": "DLV - payment_type",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "ecommerce.payment_type"
+                    }
+                ],
+                "fingerprint": "1794784018904",
+                "formatValue": {}
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "1794886468869",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6405326843/containers/287081326/versions/2?apiLink=version",
+        "gtagConfig": [
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "gtagConfigId": "4",
+                "type": "ogt_auto_events",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableOutboundClick",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableScroll",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableDownload",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableHistoryEvents",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableForm",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableVideo",
+                        "value": "true"
+                    }
+                ],
+                "fingerprint": "1794783747225"
+            },
+            {
+                "accountId": "6405326843",
+                "containerId": "287081326",
+                "gtagConfigId": "5",
+                "type": "ogt_1p_data_v2",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "isAutoEnabled",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "isManualEnabled",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "autoPhoneEnabled",
+                        "value": "true"
+                    },
+                    {
+                        "type": "LIST",
+                        "key": "autoCollectExclusionSelectors",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "exclusionSelector"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "isEnabled",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "autoAddressEnabled",
+                        "value": "true"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "autoEmailEnabled",
+                        "value": "true"
+                    }
+                ],
+                "fingerprint": "1794783747228"
+            }
+        ]
+    }
+}
