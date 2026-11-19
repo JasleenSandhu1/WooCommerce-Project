@@ -44,4 +44,4 @@ Bank-transfer and check orders wait for payment, but GA4 counts them as purchase
 
 ![WooCommerce orders with origin Referral: tagassistant.google.com](07-woocommerce-orders-referral-origin.png)
 
-Orders placed during GTM Preview show as *Referral: tagassistant.google.com*, which is how the reconciliation excludes them.
+Orders placed during GTM Preview show as *Referral: tagassistant.google.com*. The label also stuck to two later orders, so the reconciliation identifies test orders by GA4's debug flag and the publish time instead.

@@ -52,6 +52,31 @@ One tag with a regex trigger handles all ten events, instead of ten near-identic
 
 The BigQuery link was created **before** any test orders, because the export only covers data collected after linking.
 
+## Store orders in BigQuery
+
+| Step | How |
+|---|---|
+| Export | *Advanced Order Export For WooCommerce* plugin, CSV, all statuses (Pending, Processing, On hold, Completed, Cancelled, Refunded) |
+| Columns | `order_number`, `order_status`, `order_date` (UTC), `order_total`, `order_tax`, `order_refund`, `order_shipping`, `payment_method`, `shipping_method`, `origin` |
+| Table | `woo.orders`, typed columns (order number as integer, date as timestamp, money as numeric) |
+| Load check | 39 rows, 39 distinct order numbers, total $1,963.34, statuses match the WooCommerce Orders screen |
+
+The plugin's default status filter only exports Processing and On hold, which silently drops cancelled and refunded orders. Checking the row count against the source caught it.
+
+The raw CSV isn't in this repo: it contains the test customers' names and emails.
+
+## Reporting views and the weekly task
+
+| Item | Configuration |
+|---|---|
+| Dataset | `reporting`, same region as the GA4 export |
+| Views | `reconciliation`, `weekly_kpis`, `weekly_funnel_mix` ([sql/03_reporting_views.sql](../sql/03_reporting_views.sql)) |
+| Schedule | Every Monday, a scheduled Claude task reads the three views and drafts the report |
+| Week | Last 7 full days in Vancouver time vs the 7 before |
+| Match-rate target | 95% |
+
+Details: [weekly-report.md](weekly-report.md)
+
 ## Known gaps, built in on purpose
 
 - **Refunds don't reach GA4.** Sending refund events needs GTM Kit Premium, so refunded orders keep their revenue in GA4. That's one of the mismatch causes the reconciliation has to find.
